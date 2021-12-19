@@ -93,3 +93,4 @@ commit
 [Quidway]snmp-agent sys-info contact X Division
 [Quidway]snmp-agent sys-info location Kremlin
 Èñòî÷íèê: https://kslift.ru/nastroyka-dostupa-po-ssh-huawei 
+ 
