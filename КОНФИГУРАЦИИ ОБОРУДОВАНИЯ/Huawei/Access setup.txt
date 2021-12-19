@@ -1,0 +1,95 @@
+ Изменить пароль и прочие параметры аутентификации на консольном порту далее можно с помощью следующих команд:
+Пример смены пароля
+
+<HUAWEI> system-view
+[~HUAWEI] user-interface console 0
+[~HUAWEI-ui-console0] authentication-mode password
+[~HUAWEI-ui-console0] set authentication password cipher <пароль>
+[*HUAWEI-ui-console0] commit
+
+
+Пример настройки адреса для интерфейса VLAN 1:
+
+[~HUAWEI] interface vlan 1
+[~HUAWEI-Vlanif1] ip address 10.10.10.1 255.255.255.0
+[~HUAWEI-Vlanif1] commit
+
+[~Switch] interface 25GE 1/0/20
+[~Switch-25GE1/0/20] port link-type access
+[~Switch-25GE1/0/20] port access vlan 10
+[~Switch-25GE1/0/20] commit
+
+
+
+Настройка порта в режиме trunk:
+
+[~Switch] interface 25GE 1/0/20
+[~Switch-25GE1/0/20] port link-type trunk
+[~Switch-25GE1/0/20] port trunk pvid vlan 10 - указываем native VLAN (фреймы в этом VLAN не будут иметь тег в заголовке)
+[~Switch-25GE1/0/20] port trunk allow-pass vlan 1 to 20 - разрешаем только VLAN с тегом от 1 до 20 (для примера)
+[~Switch-25GE1/0/20] commit
+
+
+Доступ по SSH                           <Router 1>display ssh server status 
+Генерируем ключи:
+
+[~SSH Server] rsa local-key-pair create //Generate the local RSA host and server key pairs.
+
+Настраиваем интерфейст VTY
+
+[~SSH Server] user-interface vty 0 4
+[~SSH Server-ui-vty0-4] authentication-mode aaa 
+[SSH Server-ui-vty0-4] user privilege level 3
+[SSH Server-ui-vty0-4] protocol inbound ssh
+[*SSH Server-ui-vty0-4] quit
+
+
+Создаем локального пользователя "client001" и настроим ему аутентификацию по паролю
+
+[SSH Server] aaa
+[SSH Server-aaa] local-user client001 password irreversible-cipher <password string>
+[SSH Server-aaa] local-user client001 level 3
+[SSH Server-aaa] local-user client001 service-type ssh
+[SSH Server-aaa] quit
+[SSH Server] ssh user client001 authentication-type password
+Активируем сервис SSH на коммутаторе
+
+[~SSH Server] stelnet server enable
+[*SSH Server] commit
+
+Финальный штрих: настраиваем service-tupe для пользователя client001
+
+[~SSH Server] ssh user client001 service-type stelnet
+[*SSH Server] commit
+
+
+
+
+system-view
+ip route-static 0.0.0.0  0.0.0.0 192.168.0.1
+commit
+
+
+
+
+
+
+Настройка SNMP
+
+У коммутаторов Huawei есть две особенности, о которых надо помнить, настраивая snmp. Во первых, если у вас включен snmp v3, то snmp v2c работать не будет. 
+Во-вторых для snmp v2c при настройке на коммутаторе в консоле имя community надо указывать в кавычках, 
+и в мониторилке (например Dude) оно тоже должно быть указано в кавычках (использовал двойные кавычки).
+
+[Quidway]acl number 2100
+[Quidway-acl-basic-2100]rule 1 permit source 172.20.0.33 0.0.0.0 // for one ip
+
+[Quidway-acl-basic-2100] quit
+[Quidway]snmp-agent sys-info version v2c
+[Quidway]undo snmp-agent sys-info version v3
+[Quidway]snmp-agent community read «huawei» acl 2100
+
+Опционально можно добавить контактные данные в snmp.
+
+[Quidway]snmp-agent sys-info contact X Division
+[Quidway]snmp-agent sys-info location Kremlin
+Источник: https://kslift.ru/nastroyka-dostupa-po-ssh-huawei
