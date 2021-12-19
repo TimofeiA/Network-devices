@@ -1,14 +1,14 @@
- Изменить пароль и прочие параметры аутентификации на консольном порту далее можно с помощью следующих команд:
-Пример смены пароля
+ Г€Г§Г¬ГҐГ­ГЁГІГј ГЇГ Г°Г®Г«Гј ГЁ ГЇГ°Г®Г·ГЁГҐ ГЇГ Г°Г Г¬ГҐГІГ°Г» Г ГіГІГҐГ­ГІГЁГґГЁГЄГ Г¶ГЁГЁ Г­Г  ГЄГ®Г­Г±Г®Г«ГјГ­Г®Г¬ ГЇГ®Г°ГІГі Г¤Г Г«ГҐГҐ Г¬Г®Г¦Г­Г® Г± ГЇГ®Г¬Г®Г№ГјГѕ Г±Г«ГҐГ¤ГіГѕГ№ГЁГµ ГЄГ®Г¬Г Г­Г¤:
+ГЏГ°ГЁГ¬ГҐГ° Г±Г¬ГҐГ­Г» ГЇГ Г°Г®Г«Гї
 
 <HUAWEI> system-view
 [~HUAWEI] user-interface console 0
 [~HUAWEI-ui-console0] authentication-mode password
-[~HUAWEI-ui-console0] set authentication password cipher <пароль>
+[~HUAWEI-ui-console0] set authentication password cipher <ГЇГ Г°Г®Г«Гј>
 [*HUAWEI-ui-console0] commit
 
 
-Пример настройки адреса для интерфейса VLAN 1:
+ГЏГ°ГЁГ¬ГҐГ° Г­Г Г±ГІГ°Г®Г©ГЄГЁ Г Г¤Г°ГҐГ±Г  Г¤Г«Гї ГЁГ­ГІГҐГ°ГґГҐГ©Г±Г  VLAN 1:
 
 [~HUAWEI] interface vlan 1
 [~HUAWEI-Vlanif1] ip address 10.10.10.1 255.255.255.0
@@ -21,21 +21,21 @@
 
 
 
-Настройка порта в режиме trunk:
+ГЌГ Г±ГІГ°Г®Г©ГЄГ  ГЇГ®Г°ГІГ  Гў Г°ГҐГ¦ГЁГ¬ГҐ trunk:
 
 [~Switch] interface 25GE 1/0/20
 [~Switch-25GE1/0/20] port link-type trunk
-[~Switch-25GE1/0/20] port trunk pvid vlan 10 - указываем native VLAN (фреймы в этом VLAN не будут иметь тег в заголовке)
-[~Switch-25GE1/0/20] port trunk allow-pass vlan 1 to 20 - разрешаем только VLAN с тегом от 1 до 20 (для примера)
+[~Switch-25GE1/0/20] port trunk pvid vlan 10 - ГіГЄГ Г§Г»ГўГ ГҐГ¬ native VLAN (ГґГ°ГҐГ©Г¬Г» Гў ГЅГІГ®Г¬ VLAN Г­ГҐ ГЎГіГ¤ГіГІ ГЁГ¬ГҐГІГј ГІГҐГЈ Гў Г§Г ГЈГ®Г«Г®ГўГЄГҐ)
+[~Switch-25GE1/0/20] port trunk allow-pass vlan 1 to 20 - Г°Г Г§Г°ГҐГёГ ГҐГ¬ ГІГ®Г«ГјГЄГ® VLAN Г± ГІГҐГЈГ®Г¬ Г®ГІ 1 Г¤Г® 20 (Г¤Г«Гї ГЇГ°ГЁГ¬ГҐГ°Г )
 [~Switch-25GE1/0/20] commit
 
 
-Доступ по SSH                           <Router 1>display ssh server status 
-Генерируем ключи:
+Г„Г®Г±ГІГіГЇ ГЇГ® SSH                           <Router 1>display ssh server status 
+ГѓГҐГ­ГҐГ°ГЁГ°ГіГҐГ¬ ГЄГ«ГѕГ·ГЁ:
 
 [~SSH Server] rsa local-key-pair create //Generate the local RSA host and server key pairs.
 
-Настраиваем интерфейст VTY
+ГЌГ Г±ГІГ°Г ГЁГўГ ГҐГ¬ ГЁГ­ГІГҐГ°ГґГҐГ©Г±ГІ VTY
 
 [~SSH Server] user-interface vty 0 4
 [~SSH Server-ui-vty0-4] authentication-mode aaa 
@@ -44,7 +44,7 @@
 [*SSH Server-ui-vty0-4] quit
 
 
-Создаем локального пользователя "client001" и настроим ему аутентификацию по паролю
+Г‘Г®Г§Г¤Г ГҐГ¬ Г«Г®ГЄГ Г«ГјГ­Г®ГЈГ® ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї "client001" ГЁ Г­Г Г±ГІГ°Г®ГЁГ¬ ГҐГ¬Гі Г ГіГІГҐГ­ГІГЁГґГЁГЄГ Г¶ГЁГѕ ГЇГ® ГЇГ Г°Г®Г«Гѕ
 
 [SSH Server] aaa
 [SSH Server-aaa] local-user client001 password irreversible-cipher <password string>
@@ -52,12 +52,12 @@
 [SSH Server-aaa] local-user client001 service-type ssh
 [SSH Server-aaa] quit
 [SSH Server] ssh user client001 authentication-type password
-Активируем сервис SSH на коммутаторе
+ГЂГЄГІГЁГўГЁГ°ГіГҐГ¬ Г±ГҐГ°ГўГЁГ± SSH Г­Г  ГЄГ®Г¬Г¬ГіГІГ ГІГ®Г°ГҐ
 
 [~SSH Server] stelnet server enable
 [*SSH Server] commit
 
-Финальный штрих: настраиваем service-tupe для пользователя client001
+Г”ГЁГ­Г Г«ГјГ­Г»Г© ГёГІГ°ГЁГµ: Г­Г Г±ГІГ°Г ГЁГўГ ГҐГ¬ service-tupe Г¤Г«Гї ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї client001
 
 [~SSH Server] ssh user client001 service-type stelnet
 [*SSH Server] commit
@@ -74,11 +74,11 @@ commit
 
 
 
-Настройка SNMP
+ГЌГ Г±ГІГ°Г®Г©ГЄГ  SNMP
 
-У коммутаторов Huawei есть две особенности, о которых надо помнить, настраивая snmp. Во первых, если у вас включен snmp v3, то snmp v2c работать не будет. 
-Во-вторых для snmp v2c при настройке на коммутаторе в консоле имя community надо указывать в кавычках, 
-и в мониторилке (например Dude) оно тоже должно быть указано в кавычках (использовал двойные кавычки).
+Г“ ГЄГ®Г¬Г¬ГіГІГ ГІГ®Г°Г®Гў Huawei ГҐГ±ГІГј Г¤ГўГҐ Г®Г±Г®ГЎГҐГ­Г­Г®Г±ГІГЁ, Г® ГЄГ®ГІГ®Г°Г»Гµ Г­Г Г¤Г® ГЇГ®Г¬Г­ГЁГІГј, Г­Г Г±ГІГ°Г ГЁГўГ Гї snmp. Г‚Г® ГЇГҐГ°ГўГ»Гµ, ГҐГ±Г«ГЁ Гі ГўГ Г± ГўГЄГ«ГѕГ·ГҐГ­ snmp v3, ГІГ® snmp v2c Г°Г ГЎГ®ГІГ ГІГј Г­ГҐ ГЎГіГ¤ГҐГІ. 
+Г‚Г®-ГўГІГ®Г°Г»Гµ Г¤Г«Гї snmp v2c ГЇГ°ГЁ Г­Г Г±ГІГ°Г®Г©ГЄГҐ Г­Г  ГЄГ®Г¬Г¬ГіГІГ ГІГ®Г°ГҐ Гў ГЄГ®Г­Г±Г®Г«ГҐ ГЁГ¬Гї community Г­Г Г¤Г® ГіГЄГ Г§Г»ГўГ ГІГј Гў ГЄГ ГўГ»Г·ГЄГ Гµ, 
+ГЁ Гў Г¬Г®Г­ГЁГІГ®Г°ГЁГ«ГЄГҐ (Г­Г ГЇГ°ГЁГ¬ГҐГ° Dude) Г®Г­Г® ГІГ®Г¦ГҐ Г¤Г®Г«Г¦Г­Г® ГЎГ»ГІГј ГіГЄГ Г§Г Г­Г® Гў ГЄГ ГўГ»Г·ГЄГ Гµ (ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г« Г¤ГўГ®Г©Г­Г»ГҐ ГЄГ ГўГ»Г·ГЄГЁ).
 
 [Quidway]acl number 2100
 [Quidway-acl-basic-2100]rule 1 permit source 172.20.0.33 0.0.0.0 // for one ip
@@ -86,10 +86,10 @@ commit
 [Quidway-acl-basic-2100] quit
 [Quidway]snmp-agent sys-info version v2c
 [Quidway]undo snmp-agent sys-info version v3
-[Quidway]snmp-agent community read «huawei» acl 2100
+[Quidway]snmp-agent community read В«huaweiВ» acl 2100
 
-Опционально можно добавить контактные данные в snmp.
+ГЋГЇГ¶ГЁГ®Г­Г Г«ГјГ­Г® Г¬Г®Г¦Г­Г® Г¤Г®ГЎГ ГўГЁГІГј ГЄГ®Г­ГІГ ГЄГІГ­Г»ГҐ Г¤Г Г­Г­Г»ГҐ Гў snmp.
 
 [Quidway]snmp-agent sys-info contact X Division
 [Quidway]snmp-agent sys-info location Kremlin
-Источник: https://kslift.ru/nastroyka-dostupa-po-ssh-huawei
+Г€Г±ГІГ®Г·Г­ГЁГЄ: https://kslift.ru/nastroyka-dostupa-po-ssh-huawei 
