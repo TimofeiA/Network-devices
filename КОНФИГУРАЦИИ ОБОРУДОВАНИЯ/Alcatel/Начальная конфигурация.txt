@@ -1,0 +1,41 @@
+admin set-time
+A:Router_3# admin reboot ----перезагрузка
+A:Router_2# show system license
+A:vRR# configure system name Router_1
+logout - выйти
+A:Router_1# show card detail
+
+
+show card state
+configure
+card 1
+card-type "iom3-xp-b"
+*A:vRR>config>card# mda 1
+*A:vRR>config>card>mda# mda-type "m5-1gb-sfp-b"
+
+
+A:Router_1# configure port 1/1/1
+A:Router_1>config>port>ethernet# mtu 9212
+A:Router_2>config>port>ethernet# mode access
+*A:Router_1>config>port>ethernet# encap-type dot1q
+A:Router_2# configure port 1/1/[1..5] ethernet mtu 9212 ---- сразу 5 портов конфигурить
+A:Router_2# configure port 1/1/[1..5] no shutdown
+
+
+
+A:Router_1# show router interface
+A:Router_1# show router interface "system" detail
+
+
+A:Router_1>config>router# interface "system"
+A:Router_1>config>router>if# address 1.1.1.1/32
+
+
+*A:Router_3>config>router# interface toR1 -----создаем логический интерконнект
+*A:Router_3>config>router>if$ port 1/1/1 ----- биндим к нему порт
+*A:Router_3>config>router>if$ address 10.1.2.2/28 --- даем адрес 
+
+
+A:Router_3# show router arp
+A:Router_3# show router route-table
+A:Router_3# show router fib 1 all

@@ -1,0 +1,26 @@
+LACP общий PAgP цисковский протокол  балансировка нагрузки: Sw1(config)port-channel load-balance ?
+
+
+LACP настройка:
+
+Switch(config)#interface range g0/1-2
+Switch(config-if-range)#channel-group 2 mode active
+
+
+
+
+
+
+LACP Layer 3 switchport:
+
+interface Port_Channel <N>
+no switchport
+ip address <address> <mask>
+
+“еперь добавл€ем порты
+
+interface range Eth 0/0-4
+no switchport
+channel-group <N> mode X
+
+

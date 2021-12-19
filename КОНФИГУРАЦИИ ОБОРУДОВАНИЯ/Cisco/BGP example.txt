@@ -1,0 +1,7 @@
+RTA# 
+     router bgp 100 
+     neighbor 190.225.11.1 remote-as 100 
+     neighbor 190.225.11.1 update-source loopback 1 
+RTB# 
+     router bgp 100 
+     neighbor 150.212.1.1 remote-as 100 

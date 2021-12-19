@@ -1,0 +1,11 @@
+ Cisco. Зеркалирование портов
+
+Включить зеркалирование порта Gi0/3 на Gi0/1, к которому подключен анализатор трафика
+monitor session 1 source interface Gi0/3
+monitor session 1 destination interface Gi0/1
+
+Отмена зеркалирования
+no monitor session 1 source interface Gi0/3
+no monitor session 1 destination interface Gi0/1
+
+show monitor

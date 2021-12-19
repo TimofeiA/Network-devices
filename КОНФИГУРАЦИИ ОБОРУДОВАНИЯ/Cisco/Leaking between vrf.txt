@@ -1,0 +1,47 @@
+                                                            Router#show ip bgp vpnv4 all
+
+MAIN_ROUTER(config)#router bgp 1234
+MAIN_ROUTER(config-router)#address-family ipv4 vrf R2
+MAIN_ROUTER(config-router-af)#network 2.2.2.2 mask 255.255.255.255 ---- адрес Loopback2 в сторону R2(vrf R2)
+MAIN_ROUTER(config-router-af)#network 2.2.2.0 mask 255.255.255.0
+
+или второй вариант обЪявить все подключенные в этом vrf сети:
+MAIN_ROUTER(config-router)#address-family ipv4 vrf R2
+MAIN_ROUTER(config-router-af)#redistribute connected
+
+ip vrf R2
+ description Route_to_R2
+ rd 1234:22
+ route-target export 234:234
+ route-target import 234:234
+!
+ip vrf R3
+ description route_to_R3
+ rd 1234:33
+ route-target export 234:234
+ route-target import 234:234
+!
+ip vrf R4
+ description Route_to_R4
+ rd 1234:44
+ route-target export 234:234
+ route-target import 234:234
+
+
+
+
+
+
+
+
+
+R3#sh ip vrf interfaces R2
+Interface              IP-Address      VRF                              Protocol
+Fa0/0                  192.168.1.10    R2                               up
+
+R3#sh ip vrf detail R2
+VRF R2; default RD <not set>; default VPNID <not set>
+  Description: Route_to_R2
+
+
+R2#sh int summary ----- крутая команда

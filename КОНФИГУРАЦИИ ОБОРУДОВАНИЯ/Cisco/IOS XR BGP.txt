@@ -1,0 +1,46 @@
+
+
+1. configure
+2. router bgp autonomous-system-number
+3. address-family vpnv4 unicast or address-family vpnv6 unicast
+4. neighbor ip-address remote-as autonomous-system-number
+5. address-family vpnv4 unicast or address-family vpnv6 unicast
+6. Use the commit or end command.
+
+
+RP/0/RSP0/CPU0:router# configure
+RP/0/RSP0/CPU0:router(config)# router bgp 120
+RP/0/RSP0/CPU0:router(config-bgp)# address-family vpnv4 unicast
+RP/0/RSP0/CPU0:router(config-bgp)# neighbor 172.168.40.24 remote-as 2002
+RP/0/RSP0/CPU0:router(config-bgp-nbr)# address-family vpnv4 unicast
+
+
+----------Создание vrf -----------------
+
+1. configure
+2. vrf vrf-name
+3. address-family ipv4 unicast
+4. import route-policy policy-name
+5. import route-target [ as-number:nn | ip-address:nn ]
+6. export route-policy policy-name
+7. export route-target [ as-number:nn | ip-address:nn ]
+8. exit
+9. exit
+10. router bgp autonomous-system-number
+11. vrf vrf-name
+12. rd { as-number | ip-address | auto }
+13. Use the commit or end command.
+
+
+RP/0/RSP0/CPU0:router# configure
+RP/0/RSP0/CPU0:router(config)# vrf vrf_1
+RP/0/RSP0/CPU0:router(config-vrf)# address-family ipv4 unicast
+RP/0/RSP0/CPU0:router(config-vrf-af)# import route-policy policy_A
+RP/0/RSP0/CPU0:router(config-vrf-af)# import route-target 120:1
+RP/0/RSP0/CPU0:router(config-vrf-af)# export route-policy policy_B
+RP/0/RSP0/CPU0:router(config-vrf-af)# export route-target 120:2
+RP/0/RSP0/CPU0:router(config-vrf-af)# exit
+RP/0/RSP0/CPU0:router(config-vrf)# exit
+RP/0/RSP0/CPU0:router(config)# router bgp 120
+RP/0/RSP0/CPU0:router(config-bgp)# vrf vrf_1
+RP/0/RSP0/CPU0:router(config-bgp-vrf)# rd auto

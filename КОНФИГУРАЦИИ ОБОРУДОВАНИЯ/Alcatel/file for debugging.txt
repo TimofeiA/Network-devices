@@ -1,0 +1,27 @@
+A:Router_1>config>log# /file dir log --- посмотреть
+
+
+A:Router_1# configure log file-id 66
+*A:Router_1>config>log>file-id$ description "Log file for debugs"
+*A:Router_3>config>log>file-id$ location cf3:
+*A:Router_1>config>log>file-id$ rollover 60 retention 24
+
+
+A:Router_1>config>log# log-id 66
+*A:Router_1>config>log>log-id$ description "Event handler for debug output"
+*A:Router_1>config>log>log-id$ from debug-trace
+*A:Router_1>config>log>log-id$ to file 66
+
+
+
+Создание policy:
+
+A:Router_1# configure router policy-options
+A:Router_1>config>router>policy-options# begin
+A:Router_1>config>router>policy-options# policy-statement "EXPORT-DIRECT-ROUTES"
+A:Router_1>config>router>policy-options>policy-statement$ default-action reject
+A:Router_1>config>router>policy-options>policy-statement$ entry 1
+Router_1>config>router>policy-options>policy-statement>entry$ from protocol direct
+A:Router_1>config>router>policy-options>policy-statement>entry$ to protocol isis
+A:Router_1>config>router>policy-options>policy-statement>entry$ action accept
+A:Router_1>config>router>policy-options# commit

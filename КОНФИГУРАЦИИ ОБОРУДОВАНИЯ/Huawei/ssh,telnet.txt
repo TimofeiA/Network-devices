@@ -1,0 +1,21 @@
+[SSH_Server-ui-vty0-4]dis this
+#
+user-interface con 0
+user-interface vty 0 4
+ authentication-mode aaa
+ protocol inbound ssh
+
+
+
+[SSH_Server]aaa
+[SSH_Server-aaa]local-user tim password cipher Huawei123!
+[SSH_Server-aaa]local-user tim privilege level 15
+[SSH_Server-aaa]local-user tim service-type ssh
+[SSH_Server]ssh user tim service-type stelnet
+
+
+
+
+
+
+         С работы:

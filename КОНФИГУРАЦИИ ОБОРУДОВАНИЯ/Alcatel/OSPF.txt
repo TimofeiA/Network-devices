@@ -1,0 +1,58 @@
+A:Router_1# show router route-table protocol ospf
+*A:Router_1# show router ospf database
+*A:Router_1# show router ospf neighbor
+*A:Router_1# show router ospf status
+
+
+*A:vRR>config# router interface loopback ---можно иcпользовать интерфейс system
+A:vRR>config>router>if$ address 12.12.12.12/32
+Router_1>config>router# ospf
+Router_1>config>router>ospf# router-id 12.12.12.12
+A:vRR>config>router>ospf$ area 0
+Router_1>config>router>ospf>area# interface "loopback"
+Router_1>config>router>ospf>area>if$ no shutdown
+A:Router_1>config>router>ospf>area# interface "to R2" 
+A:Router_1>config>router>ospf>area>if$ no shutdown ----включаем интерфейс
+
+
+
+C system интерфейсом:
+
+
+*A:vRR>config>router# info
+----------------------------------------------
+#--------------------------------------------------
+echo "IP Configuration"
+#--------------------------------------------------
+        interface "system"
+            address 2.2.2.2/32
+            no shutdown
+        exit
+        interface "toR1"
+            address 11.11.11.3/24
+            port 1/1/1
+            no shutdown
+        exit
+        interface "toR3"
+            address 33.33.33.2/25
+            port 1/1/5
+            no shutdown
+        exit
+        router-id 2.2.2.2
+#--------------------------------------------------
+echo "OSPFv2 Configuration"
+#--------------------------------------------------
+        ospf
+            area 0.0.0.0
+                interface "system"
+                    no shutdown
+                exit
+                interface "toR1"
+                    no shutdown
+                exit
+                interface "toR3"
+                    no shutdown
+                exit
+            exit
+        exit
+----------------------------------------------

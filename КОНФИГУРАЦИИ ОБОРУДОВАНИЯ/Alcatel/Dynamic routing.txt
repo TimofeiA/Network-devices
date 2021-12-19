@@ -1,0 +1,15 @@
+протокол ISIS              show router isis adjacency  show router isis routes  show router fib 1 all
+                                              tree flat | match debug
+
+A:Router_1# configure router router-id 1.1.1.1
+Router_1>config>router# isis
+*A:Router_1>config>router>isis$ area-id 49.00
+A:Router_1>config>router>isis$ level-capability level-2
+Router_1>config>router>isis$ /configure router isis interface "system" passive
+Router_1>config>router>isis$ /configure router isis interface "system" level-capability level-2
+Router_1>config>router>isis$ interface "toR3"
+Router_1>config>router>isis>if$ level-capability level-2
+Router_1>config>router>isis>if$ level 2 metric 5000
+Router_1>config>router>isis>if$ interface-type point-to-point
+Router_1>config>router>isis$ /configure router isis level 2 wide-metrics-only
+Router_1>config>router>isis$ /configure router isis export "EXPORT-DIRECT-ROUTES"

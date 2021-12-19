@@ -1,0 +1,58 @@
+            7200 роутер    Router_1#telnet 10.1.4.1 /vrf Management - телнет в vrf
+
+Router_1(config)#ip vrf LENTA --------новая команда vrf definition
+Router_1(config-vrf)#description LENTA SC_VC406
+Router_1(config-vrf)#rd 3216:122
+Router_1(config-vrf)#route-target import 3216:122
+Router_1(config-vrf)#route-target export 3216:122
+
+Биндим интерфейс в vrf:
+
+Router_1(config)#interface g1/0
+Router_1(config-if)#ip vrf forwarding LENTA
+Router_1(config-if)#ip address 10.1.5.1 255.255.255.0
+Router_1(config-if)#ipv6 address 2001:10:1:5::1/64
+
+
+
+                         IOS XR
+vrf Lenta
+address-family ipv4 unicast
+
+
+
+
+
+
+
+sh ip route vrf *
+sh run vrf
+обновить команду vrf: vrf upgrade-cli multi-af-mode common-polices
+
+
+
+RP/0/RSP0/CPU0:pe02.Cherepovets(config)#vrf TT8135401
+RP/0/RSP0/CPU0:pe02.Cherepovets(config-vrf)#interface Bundle-Ether200.715 
+RP/0/RSP0/CPU0:pe02.Cherepovets(config-subif)#interface Bundle-Ether200.715 description TT8135401
+RP/0/RSP0/CPU0:pe02.Cherepovets(config)#interface Bundle-Ether200.715 vrf TT8135401
+RP/0/RSP0/CPU0:pe02.Cherepovets(config)#interface Bundle-Ether200.715 ipv4 address 172.1.28.1 255.255.255.0
+RP/0/RSP0/CPU0:pe02.Cherepovets(config)#interface Bundle-Ether200.715 encapsulation dot1q 715
+
+
+
+
+Router(config)#vrf definition ISP-1  ------------ работает на новых цисках
+Router(config-vrf)#address-family ipv4
+---------------------------------------------------
+Router(config)#ip route vrf ISP-1 0.0.0.0 0.0.0.0 10.0.0.2         статические маршруты
+Router(config)#ip route vrf ISP-2 0.0.0.0 0.0.0.0 10.0.0.2
+---------------------------------------------------------------
+
+Router(config)#router ospf 10 vrf ISP-1
+Router(config-router)#network 172.16.10.0 0.0.0.255 area 0
+Router(config-router)#network 10.0.0.0 0.0.0.255 area 0
+*Mar 21 01:40:43.150: %OSPF-5-ADJCHG: Process 10, Nbr 10.0.20.2 on GigabitEthernet0/1 from LOADING to FULL, Loading Done
+
+Router(config)#router ospf 20 vrf ISP-2
+Router(config-router)#network 172.16.20.0 0.0.0.255 area 0
+Router(config-router)#network 10.0.20.0 0.0.0.255 area 0

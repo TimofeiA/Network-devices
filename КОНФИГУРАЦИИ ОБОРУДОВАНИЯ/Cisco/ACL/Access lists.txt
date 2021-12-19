@@ -1,0 +1,50 @@
+--—тандартный acl распологают ближе к точке назначени€, расширенный к источнику.--
+
+ѕримеры access-lists с легким комментарием представлены ниже.
+access-list 101 permit ip 192.168.0.0 0.0.0.255 any
+### этот access-list примененный к route-maps будет выбирать трафик сети 192.168.0.0/24
+до любого назначени€.
+
+ј при применении такого access-lists
+access-list 101 deny ip 192.168.0.0 0.0.0.255 host 192.168.2.44
+access-list 101 deny ip 192.168.0.0 0.0.0.255 192.168.1.0 0.0.0.31
+access-list 101 permit ip 192.168.0.0 0.0.0.255 any
+### в первой строчке не будет перенаправл€ть трафик до хоста 192.168.2.44
+### по второй строке так же не будет перенаправл€ть на сеть 192.168.1.0/27
+### ну и по третьей строке будет примен€ть дл€ всего остального трафика, сети 192.168.0.0/24.
+
+
+
+
+
+access-list 103 permit tcp 192.168.30.0 0.0.0.255 any eq 80
+
+
+R1(config)#access-list 10 remark Permit hosts from the 192.168.10.0 LAN  (remark позвол€ет добавить описание к acl)
+R1(config)#access-list 10 permit 192.168.10.0 0.0.0.255
+R1(config)#interface f0/0
+R1(config-if)#ip access-group 10 ?
+  in   inbound packets
+  out  outbound packets
+
+
+»менованый лист:
+
+R1(config)#ip access-list standard NO_ACCESS
+R1(config-std-nacl)#deny host 192.168.11.10
+R1(config-std-nacl)#permit any
+R1(config)#interface f0/0
+R1(config-if)#ip access-group NO_ACCESS out
+
+
+
+
+ Extended ACLs are numbered 100 to 199 and 2000 to 2699, providing a total of 799 possible extended numbered ACLs.
+ Extended ACLs can also be named.
+ Extended ACLs are used more often than standard ACLs because they provide a greater degree of control.
+
+
+R2(config)#access-list 114 permit tcp 192.168.20.0 0.0.0.255 any eq 23
+
+
+

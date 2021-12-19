@@ -1,0 +1,44 @@
+сеть 172.12.128.32/30
+172.12.128.33 на стороне провайдера
+172.12.128.34 на стороне клиента
+bgp 65108
+172.12.129.32/30
+###
+Настройки выполнены
+
+an02.Pushkina50.Khabarovsk#show run interface Tu4612688 | b ace
+interface Tunnel4612688
+description IPVPN: GAZPROM_BURENIE SC-OP737 ID-4612688 1C-11823429
+bandwidth 1024
+ip vrf forwarding GAZPROM_ID-3299099
+ip address 172.12.129.33 255.255.255.252
+no ip redirects
+no ip proxy-arp
+ip accounting precedence input
+ip accounting precedence output
+ip mtu 1476
+ip flow ingress
+ip tcp adjust-mss 1436
+tunnel source 10.18.130.17
+tunnel destination 10.18.22.154
+tunnel vrf iDirect
+service-policy input Prof2-80/40/30/30-IN-1024k
+service-policy output Prof2-80/40/30/30-OUT-1024k
+end
+
+an02.Pushkina50.Khabarovsk#show conf | i 172.12.129.34
+ip route vrf GAZPROM_ID-3299099 172.12.128.32 255.255.255.252 Tunnel4612688 172.12.129.34 name ID-4612688-1C-11823429
+
+an02.Pushkina50.Khabarovsk#show conf | i 10.18.22.152
+ip route vrf iDirect 10.18.22.152 255.255.255.252 10.18.130.18 name ID-4612688-1C-11823429
+
+an02.Pushkina50.Khabarovsk#show conf | i 172.12.128.34
+neighbor 172.12.128.34 remote-as 65108
+neighbor 172.12.128.34 description GAZPROM_BURENIE ID-4612688
+neighbor 172.12.128.34 ebgp-multihop 10
+neighbor 172.12.128.34 activate
+neighbor 172.12.128.34 soft-reconfiguration inbound
+neighbor 172.12.128.34 maximum-prefix 100 restart 5
+an02.Pushkina50.Khabarovsk#
+
+ 

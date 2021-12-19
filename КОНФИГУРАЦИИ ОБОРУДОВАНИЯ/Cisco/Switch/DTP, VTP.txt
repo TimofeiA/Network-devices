@@ -1,0 +1,11 @@
+DTP:
+
+Switch(config)#interface g0/1
+Switch(config-if)#switchport mode dynamic desirable
+
+
+VTP:
+
+show vtp status
+
+Switch(config)#vtp domain HQ-BB

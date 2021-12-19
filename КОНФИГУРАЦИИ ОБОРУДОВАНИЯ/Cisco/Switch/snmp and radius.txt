@@ -1,0 +1,77 @@
+interface GigabitEthernet0/1
+ description Uplink / Alc-NU / 10.240.144.10 / e20
+ switchport trunk allowed vlan 329,330,506,2009,2998,3998
+ switchport mode trunk
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan506
+ description M-2960 / 10.240.150.
+ ip address 10.177.74.106 255.255.255.0
+!
+ip default-gateway 10.177.74.1
+ip http server
+ip http access-class 12
+ip http secure-server
+ip sla enable reaction-alerts
+logging esm config
+logging trap debugging
+access-list 12 permit 10.177.32.146
+access-list 12 permit 10.177.75.252
+access-list 12 permit 77.240.144.0 0.0.0.255
+access-list 12 deny   any
+access-list 113 permit ip 77.240.144.0 0.0.0.255 any
+access-list 113 deny   ip any any
+access-list 114 permit ip 77.240.144.0 0.0.1.255 any
+access-list 114 permit ip 195.218.143.128 0.0.0.15 any
+access-list 114 permit ip 217.118.85.80 0.0.0.15 any
+access-list 114 permit ip 10.0.0.0 0.255.255.255 any
+access-list 114 deny   ip any any
+snmp-server community pcat8 RO 12
+snmp-server community Pfvtybnm RW 12
+snmp-server community bellmen RO
+snmp-server trap-source Vlan506
+snmp-server enable traps snmp linkdown linkup coldstart warmstart
+snmp-server host 77.240.144.165 version 2c kjdrjcnm
+radius-server host 10.177.75.254 auth-port 1812 acct-port 1813 key fkrjc
+!
+!
+no vstack
+privilege ipenacl level 3 deny tcp any any range
+privilege ipenacl level 3 deny tcp any any eq
+privilege ipenacl level 3 deny tcp any any
+privilege ipenacl level 3 deny tcp any
+privilege ipenacl level 3 deny tcp
+privilege ipenacl level 3 deny ip any any range
+privilege ipenacl level 3 deny ip any any eq
+privilege ipenacl level 3 deny ip any any
+privilege ipenacl level 3 deny ip any
+privilege ipenacl level 3 deny ip
+privilege ipenacl level 3 deny
+privilege ipenacl level 3 permit tcp any any range
+privilege ipenacl level 3 permit tcp any any eq
+privilege ipenacl level 3 permit tcp any any
+privilege ipenacl level 3 permit tcp any
+privilege ipenacl level 3 permit tcp
+privilege ipenacl level 3 permit ip any any range
+privilege ipenacl level 3 permit ip any any eq
+privilege ipenacl level 3 permit ip any any
+privilege ipenacl level 3 permit ip any
+privilege ipenacl level 3 permit ip
+privilege ipenacl level 3 permit
+privilege interface level 4 keepalive
+privilege interface level 4 duplex
+privilege interface level 3 shutdown
+privilege interface level 4 loopback
+privilege interface level 4 load-interval
+privilege interface level 3 ip access-group
+privilege interface level 3 ip
+privilege interface level 2 description
+privilege configure level 3 ip access-list extended
+privilege configure level 3 ip access-list
+privilege configure level 2 interface
+privilege configure level 3 ip
+privilege exec level 2 write memory
+privilege exec level 2 write

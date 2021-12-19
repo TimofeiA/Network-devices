@@ -1,0 +1,45 @@
+SW1(config)#interface gigabit0/1 
+SW1(config-if)#switchport mode access 
+SW1(config-if)#switchport access vlan 50 
+SW1(config-if)#switchport port-security 
+SW1(config-if)#switchport port-security maximum 1
+SW1(config-if)#switchport port-security mac-address sticky
+SW1(config-if)#switchport port-security violation-mode shutdown(protect)
+SW1(config-if)#end
+
+
+
+Восстановление состояния порта в up через 300 сек:
+
+SW1#conf t 
+Enter configuration commands, one per line.  End with CTRL/Z. 
+SW1(config)#errdisable recovery cause psecure-violation 
+SW1(config)#errdisable recovery interval 300 
+SW1(config-if)#end
+
+
+
+interface FastEthernet0/2
+ switchport trunk allowed vlan 1-100
+ switchport trunk native vlan 99
+ switchport mode trunk
+
+
+
+
+
+interface range f0/11-24
+
+
+
+
+
+
+interface GigabitEthernet0/0                         ip адрес навешан в 100 влане, пинг с роутера проходит,
+ switchport trunk allowed vlan 1-1000                только тогда, когда нейтив влан 100 на порту, или есть саб интерфейс с тэгом 100
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 100
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+end

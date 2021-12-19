@@ -1,0 +1,7 @@
+Router_1(config)#interface tunnel 1
+Router_1(config-if)#tunnel mode gre ip
+Router_1(config-if)#tunnel source 32.113.43.1  (также можно использовать номер интерфейса, например fa0/1)
+Router_1(config-if)#tunnel destination 82.122.36.1
+Router_1(config-if)#ip address 172.16.0.1 255.255.255.0
+Router_1(config-if)#ip mtu 1400
+Router_1(config-if)#ip tcp adjust-mss 1360

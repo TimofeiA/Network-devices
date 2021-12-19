@@ -1,0 +1,38 @@
+ Cisco. Настройка SNMP
+
+Switch# configure terminal
+
+Включение SNMP v2c
+Switch(config)#snmp-server community <community_name> RO
+где <community_name> - имя сообщества для чтения.
+
+Switch(config)#snmp-server host <ip_address> version 2c <community_name>
+
+<ip_address> - хост-ловушка, на который отправляется snmp
+2c - версия snmp
+<community_name> - имя сообщества для чтения.
+
+Дополнительные опции
+Прописать расположение (location)
+Switch(config)#snmp-server location Antarctica
+
+Прописать контактную информацию
+Switch(config)#snmp-server contact k0sh <my.b14ckb0x@gmail.com>
+
+Включение SNMP v3
+Switch(config)#snmp-server group <community_name> v3 priv
+Switch(config)#snmp-server user <user_name> <community_name> v3 auth sha <sha_password> priv aes 128 <aes_password>
+
+где
+<user_name> - имя пользователя
+<community_name> - имя сообщества
+"v3" - версия snmp
+<sha_password> - пароль для SHA
+<aes_password> - пароль для AES
+
+Дополнительные опции
+Прописать расположение (location)
+Switch(config)#snmp-server location Antarctica
+
+Прописать контактную информацию
+Switch(config)#snmp-server contact k0sh <my.b14ckb0x@gmail.com>

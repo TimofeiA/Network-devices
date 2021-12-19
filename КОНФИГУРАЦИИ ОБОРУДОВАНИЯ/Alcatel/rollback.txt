@@ -1,0 +1,30 @@
+configure system rollback rollback-location cf3:\system_rollback
+admin rollback save
+admin save
+file dir ----- посмотреть файлы
+admin rollback compare 2 to latest-rb ----- сравнить конфиги, 2 самый старый 1 поновее и latest новейший
+admin rollback revert 2 --- откатить к 2 версии(старой)
+configure system rollback local-max-checkpoints 15 ---- задать макс число возможных точек восстановления(1--50)
+
+
+                  
+                   rescue configuration:
+
+configure system rollback rescue-location cf3:\rescue_config
+admin rollback save rescue
+admin save
+file type rescue_config.rc
+
+
+
+
+show bof
+bof
+secindary-image cf3:\timos\i386-both.tim (просто копируем название файла из show bof), создаем запасной
+secondary-config cf3:\config.cfg.3
+
+Если праймари имидж и конфиг повреждены, загрузятся секондари!
+bof
+address 1.1.1./24
+persist on
+console-speed 9600
