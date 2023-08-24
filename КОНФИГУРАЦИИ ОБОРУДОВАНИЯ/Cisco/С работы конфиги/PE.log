@@ -3,8 +3,9 @@
 !!! - Tacacs+ is ON!, [client: 212.44.130.15 dev: 195.239.77.77 (/dev/vty2)]
 
 
-Username: knosova
-Password: 
+Username: 
+
+Password: 
 
 ================== ROUTER UNDER ARBOR MONITORING ======================
 on all int/subint with ip in global routing table add: 
@@ -27,7 +28,8 @@ CLIENTS FROM Pe04 Bundle 201 POLICED ON core-hub-01.Samara
 Last switch-over Wed May 12 02:38:00 2021: 10 weeks, 2 days, 3 hours, 30 minutes ago
 
 RP/0/RSP0/CPU0:pe04.Samara#sh run
-Fri Jul 23 06:08:46.646 MSK
+
+Fri Jul 23 06:08:46.646 MSK
 Building configuration...
 !! IOS XR Configuration 6.6.3
 !! Last configuration change at Thu Jul 22 17:16:31 2021 by hpsa
