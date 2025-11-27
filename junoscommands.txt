@@ -11,3 +11,5 @@ load  merge terminal  --to merge excisting config and added one--
 load override WHOLE_BACKUP_CONFIG.txt
 load  merge OSPF_CONFIG.txt 
 load set terminal --to paste thousands commands in the set mode at once without problems--
+set system archival configuration transfer-on-commit
+set system archival configuration archive sites "scp://myarchive@10.12.5.256/storage/" password lab228
