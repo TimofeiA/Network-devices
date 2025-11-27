@@ -14,3 +14,4 @@ load set terminal --to paste thousands commands in the set mode at once without 
 set system archival configuration transfer-on-commit
 set system archival configuration archive sites "scp://myarchive@10.12.5.256/storage/" password lab228
 set groups MTU_9212_GROUP interfaces <xe-*> mtu 9192    --to change mtu on all interfaces xe at once--
+show configuration interfaces xe-0/1/5 | display inheritance
