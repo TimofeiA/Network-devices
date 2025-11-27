@@ -10,4 +10,4 @@ load override terminal --to put whole hierarchical  config at once and replace t
 load  merge terminal  --to merge excisting config and added one--
 load override WHOLE_BACKUP_CONFIG.txt
 load  merge OSPF_CONFIG.txt 
-
+load set terminal --to paste thousands commands in the set mode at once without problems--
