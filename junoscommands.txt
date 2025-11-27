@@ -1,0 +1,6 @@
+222@device>file list  --check files in cli mode--
+show interface terse | save CURRENT_INTF_STATUS.txt  --save to file--
+show configuration| display set| no-more    --all config at once--
+[edit system]
+user@host# protect host-name   --if you want to protect the host-name statement under the [edit system] hierarchy level--
+
