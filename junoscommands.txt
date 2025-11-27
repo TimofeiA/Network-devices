@@ -8,3 +8,6 @@ file compare files OSPF_START_CONFIG.txt RECENT_CHANES.txt
 file copy scp://lab@172.16.228.12/ospf/OSPF_CONFIG.txt /var/tmp
 load override terminal --to put whole hierarchical  config at once and replace the old one--
 load  merge terminal  --to merge excisting config and added one--
+load override WHOLE_BACKUP_CONFIG.txt
+load  merge OSPF_CONFIG.txt 
+
