@@ -4,3 +4,4 @@ show configuration| display set| no-more    --all config at once--
 [edit system]
 user@host# protect host-name   --if you want to protect the host-name statement under the [edit system] hierarchy level--
 show configuration | compare SUNDAY_CHANGES.txt     --to check and compare the differences.--
+file compare files OSPF_START_CONFIG.txt RECENT_CHANES.txt
