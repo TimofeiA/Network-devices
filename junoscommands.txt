@@ -16,3 +16,4 @@ set system archival configuration archive sites "scp://myarchive@10.12.5.256/sto
 set groups MTU_9212_GROUP interfaces <xe-*> mtu 9192    --to change mtu on all interfaces xe at once--
 show configuration interfaces xe-0/1/5 | display inheritance
 show configuration interfaces xe-0/1/5 | display inheritance no-comments
+set interfaces xe-0/1/5 apply-groups-except MTU_9212_GROUP   --if you have an interface you want to exclude from inheretence--
