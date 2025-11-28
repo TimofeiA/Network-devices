@@ -18,3 +18,8 @@ show configuration interfaces xe-0/1/5 | display inheritance
 show configuration interfaces xe-0/1/5 | display inheritance no-comments
 set interfaces xe-0/1/5 apply-groups-except MTU_9212_GROUP   --if you have an interface you want to exclude from inheretence--
 show configuration interfaces xe-0/1/5 | displayset| display inheritance
+
+edit interfaces interface-range INTERFACES_VLAN_50
+set member-range ge-0/0/15 to ge-0/0/18
+set member-range ge-0/0/20 to ge-0/0/26
+set unit 0 family ethernet-switching vlan members FINANCE
