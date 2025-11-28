@@ -23,3 +23,4 @@ edit interfaces interface-range INTERFACES_VLAN_50
 set member-range ge-0/0/15 to ge-0/0/18
 set member-range ge-0/0/20 to ge-0/0/26
 set unit 0 family ethernet-switching vlan members FINANCE
+show vlans FINANCE
