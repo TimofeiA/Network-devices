@@ -25,3 +25,4 @@ set member-range ge-0/0/20 to ge-0/0/26
 set unit 0 family ethernet-switching vlan members FINANCE
 show vlans FINANCE
 wildcard delet interfaces xe-0/2/*
+
