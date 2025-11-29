@@ -32,4 +32,5 @@ set vlans Corporate l3-interface irb.10
 set vlans Server l3-interface irb.20
 show interfaces terse irb
 show vlans Corporate detail
+show interfaces xe-0/1/5.0 | find inet| excep cash  --to check the primary and prefered ip interface address--
 
