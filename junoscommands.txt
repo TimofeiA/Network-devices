@@ -26,3 +26,8 @@ set unit 0 family ethernet-switching vlan members FINANCE
 show vlans FINANCE
 wildcard delet interfaces xe-0/2/*
 
+set interface irb unit 10 family inet address 172.16.2.25/24
+set interface irb unit 20 family inet address 172.16.4.10/24
+
+
+
