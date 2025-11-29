@@ -30,6 +30,6 @@ set interface irb unit 10 family inet address 172.16.2.25/24
 set interface irb unit 20 family inet address 172.16.4.10/24
 set vlans Corporate l3-interface irb.10
 set vlans Server l3-interface irb.20
-
+show interfaces terse irb
 
 
