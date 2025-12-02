@@ -35,4 +35,5 @@ show vlans Corporate detail
 show interfaces xe-0/1/5.0 | find inet| excep cash  --to check the primary and prefered ip interface address--
 show system information | display xml  --check in xml format(xmlapi)--
 show route 0/0 exact
+set routing option static route 172.16.254.0 next-hop 172.16.40.99 resolve --static route with remote next-hop--
 
