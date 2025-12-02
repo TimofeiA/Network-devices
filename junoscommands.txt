@@ -34,4 +34,5 @@ show interfaces terse irb
 show vlans Corporate detail
 show interfaces xe-0/1/5.0 | find inet| excep cash  --to check the primary and prefered ip interface address--
 show system information | display xml  --check in xml format(xmlapi)--
+show route 0/0 exact
 
