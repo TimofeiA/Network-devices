@@ -36,4 +36,5 @@ show interfaces xe-0/1/5.0 | find inet| excep cash  --to check the primary and p
 show system information | display xml  --check in xml format(xmlapi)--
 show route 0/0 exact
 set routing option static route 172.16.254.0 next-hop 172.16.40.99 resolve --static route with remote next-hop--
+set routing option static route 192.168.20.0/24 next-hop 172.16.5.2 no-readvertise  --if don't want to readvertise it in dynamic protocol--
 
