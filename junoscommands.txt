@@ -38,3 +38,9 @@ show route 0/0 exact
 set routing option static route 172.16.254.0 next-hop 172.16.40.99 resolve --static route with remote next-hop--
 set routing option static route 192.168.20.0/24 next-hop 172.16.5.2 no-readvertise  --if don't want to readvertise it in dynamic protocol--
 
+
+set routing-instances TEST_INSTANCE instance-type virtual-router
+set routing-instances TEST_INSTANCE interface ge-0/0/2.0
+set routing-instances TEST_INSTANCE interface ge-0/0/3.0
+
+
